@@ -1,0 +1,141 @@
+{
+  "24e124128c067999-temperature": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124128c067999",
+    "name": "강의실 A 입구",
+    "sensorType": "temperature",
+    "register": "input",
+    "address": 1,
+    "dataType": "INT16",
+    "ratio": 0.01,
+    "value": null
+  },
+
+  "24e124128c067999-humidity": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124128c067999",
+    "name": "강의실 A 입구",
+    "sensorType": "humidity",
+    "register": "input",
+    "address": 2,
+    "dataType": "UINT16",
+    "ratio": 1,
+    "value": null
+  },
+
+  "24e124128c067999-pressure": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124128c067999",
+    "name": "강의실 A 입구",
+    "sensorType": "pressure",
+    "register": "input",
+    "address": 3,
+    "dataType": "UINT16",
+    "ratio": 0.1,
+    "value": null
+  },
+
+  "24e124128c067999-illumination": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124128c067999",
+    "name": "강의실 A 입구",
+    "sensorType": "illumination",
+    "register": "input",
+    "address": 4,
+    "dataType": "UINT16",
+    "ratio": 1,
+    "value": null
+  },
+
+  "24e124128c067999-co2": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124128c067999",
+    "name": "강의실 A 입구",
+    "sensorType": "co2",
+    "register": "input",
+    "address": 5,
+    "dataType": "UINT16",
+    "ratio": 1,
+    "value": null
+  },
+
+  "24e124743d012324-spl": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124743d012324",
+    "name": "강의실 A 왼쪽 앞",
+    "sensorType": "spl",
+    "register": "input",
+    "address": 101,
+    "dataType": "UINT16",
+    "ratio": 1,
+    "value": null
+  },
+
+  "24e124743d012324-leq": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124743d012324",
+    "name": "강의실 A 왼쪽 앞",
+    "sensorType": "leq",
+    "register": "input",
+    "address": 102,
+    "dataType": "UINT16",
+    "ratio": 0.1,
+    "value": null
+  },
+
+  "24e124743d012324-lmax": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124743d012324",
+    "name": "강의실 A 왼쪽 앞",
+    "sensorType": "lmax",
+    "register": "input",
+    "address": 103,
+    "dataType": "UINT16",
+    "ratio": 0.01,
+    "value": null
+  },
+
+  "24e124785c389818-temperature": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124785c389818",
+    "name": "강의실 A",
+    "sensorType": "temperature",
+    "register": "input",
+    "address": 201,
+    "dataType": "INT16",
+    "ratio": 0.01,
+    "value": null
+  },
+
+  "24e124785c389818-humidity": {
+    "site": "nhnacademy",
+    "branch": "gyeongnam",
+    "place": "class_a",
+    "device": "24e124785c389818",
+    "name": "강의실 A",
+    "sensorType": "humidity",
+    "register": "input",
+    "address": 202,
+    "dataType": "UINT16",
+    "ratio": 1,
+    "value": null
+  }
+}

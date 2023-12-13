@@ -7,6 +7,9 @@ import org.json.JSONObject;
 import com.nhnacademy.xflow2.message.JSONMessage;
 import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ModbusMapper extends InputOutputNode<JSONWithSocketMessage, JSONMessage> {
     JSONObject mappingTable;
 
@@ -23,13 +26,18 @@ public class ModbusMapper extends InputOutputNode<JSONWithSocketMessage, JSONMes
             Socket socket = receiveMessage.getSocket();
             String host = socket.getInetAddress().getHostName();
             int port = socket.getPort();
-            String mappingKey = host + port;
+            String mappingKey = host + "-" + port;
 
-            String address = receiveJson.getString("address");
+            String address = receiveJson.optString("address");
             double value = receiveJson.getDouble("value");
+
+            log.debug("{}", mappingTable);
 
             JSONObject mappingData = mappingTable.getJSONObject(mappingKey).getJSONObject(address);
             JSONObject sendJsonObject = new JSONObject(mappingData.toString());
+
+            log.debug("mappingData: {}", mappingData);
+            log.debug("sendJsonObject: {}", sendJsonObject);
 
             sendJsonObject.put("value", value);
             JSONMessage sendMessage = new JSONMessage(sendJsonObject);

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 
-public class JSONKeyStrategy implements CheckStrategy<JSONObject>{
+public class JSONKeyStrategy implements CheckStrategy<JSONObject> {
     private final List<String> targetKeyList;
     private final List<String> subKeyList;
 

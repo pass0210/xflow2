@@ -26,8 +26,6 @@ public class MqttPublisher extends InputNode<JSONMessage> {
                 log.info("{}", jsonObject);
                 MqttMessage mqttMessage = new MqttMessage(jsonObject.toString().getBytes());
                 client.publish(jsonObject.getString("topic"), mqttMessage);
-
-                client.disconnect();
             } catch (MqttException e) {
                 log.error("Mqtt Error : {}", e.getMessage());
             } catch (InterruptedException e) {

@@ -12,10 +12,10 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ClientManager {
+public class MqttClientManager {
     private static Map<String, MqttClient> map = new HashMap<>();
 
-    private ClientManager() {
+    private MqttClientManager() {
         throw new IllegalStateException();
     }
 

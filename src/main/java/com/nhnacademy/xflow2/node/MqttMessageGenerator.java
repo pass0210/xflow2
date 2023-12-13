@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MqttMessageGenerator extends InputOutputNode<JSONMessage, JSONMessage> {
     CommonsTopicGenerator topicGenerator;
 
-    protected MqttMessageGenerator(int inputCount, int outputCount) {
+    public MqttMessageGenerator(int inputCount, int outputCount) {
         super(inputCount, outputCount);
         topicGenerator = new CommonsTopicGenerator();
     }
@@ -26,8 +26,10 @@ public class MqttMessageGenerator extends InputOutputNode<JSONMessage, JSONMessa
                 JSONObject o = new JSONObject();
                 o.put("topic", topicGenerator.generate(object).toString());
                 o.put("time", System.currentTimeMillis() / 1000L);
-                o.put("value", (object.optString("value")));
-                log.info(o.toString());
+                o.put("value", (object.optDouble("value")));
+
+                log.info("messageGenerator");
+
                 output(0, new JSONMessage(o));
             } catch (InterruptedException e) {
                 log.error("interrupt error: {}", e.getMessage());

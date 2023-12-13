@@ -3,11 +3,10 @@ package com.nhnacademy.xflow2;
 import org.json.JSONObject;
 
 public class CommonsTopicGenerator {
-    
+
     public StringBuilder generate(JSONObject object) {
         StringBuilder builder = new StringBuilder();
         builder.append("data")
-                .append("/s/" + object.get("site"))
                 .append("/b/" + object.get("branch"))
                 .append("/p/" + object.get("place"))
                 .append("/d/" + object.get("device"))

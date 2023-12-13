@@ -28,8 +28,6 @@ public class MqttSubscriber extends OutputNode<JSONMessage> {
                 JSONObject object = new JSONObject(new String(msg.getPayload()));
                 JSONMessage message = new JSONMessage(object);
 
-                log.info("{}", object);
-
                 // Output
                 output(0, message);
             });

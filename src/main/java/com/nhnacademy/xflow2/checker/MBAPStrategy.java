@@ -2,18 +2,15 @@ package com.nhnacademy.xflow2.checker;
 
 import org.json.JSONObject;
 
-import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MBAPStraegy implements CheckStrategy<JSONWithSocketMessage>{
+public class MBAPStrategy implements CheckStrategy<JSONObject>{
     private static final int PROTOCOL_ID = 0;
     private static final int UNIT_ID = 1;
 
     @Override
-    public boolean check(JSONWithSocketMessage data) {
-        JSONObject msg = data.getPayload();
+    public boolean check(JSONObject msg) {
 
         int transactionId = msg.getInt("transactionId");
         int protocolId = msg.getInt("protocolId");

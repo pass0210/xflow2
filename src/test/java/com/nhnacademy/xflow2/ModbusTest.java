@@ -31,8 +31,7 @@ public class ModbusTest {
             JSONObject ruleEngineJsonObject = new JSONObject(parser.parse(modbusReader).toString());
             RuleEngine ruleEngine = new RuleEngine(1, 1, ruleEngineJsonObject);
 
-            Register register = new Register();
-            RegisterUpdater registerUpdater = new RegisterUpdater(1, register);
+            RegisterUpdater registerUpdater = new RegisterUpdater(1);
 
             modbusClient.connect(0, modbusMapper.getInputPort(0));
             modbusMapper.connect(0, ruleEngine.getInputPort(0));

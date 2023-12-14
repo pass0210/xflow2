@@ -4,6 +4,9 @@ import org.json.JSONObject;
 
 import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class FunctionCodeSelection extends InputOutputNode<JSONWithSocketMessage, JSONWithSocketMessage> {
 
     public FunctionCodeSelection(int inputCount, int outputCount) {
@@ -24,7 +27,7 @@ public class FunctionCodeSelection extends InputOutputNode<JSONWithSocketMessage
                     output(1, message);
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("select error: {}", e.getMessage());
                 Thread.currentThread().interrupt();
             }
         }

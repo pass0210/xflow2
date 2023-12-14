@@ -21,10 +21,16 @@ public class FunctionCodeSelection extends InputOutputNode<JSONWithSocketMessage
                 JSONObject jsonObject = message.getPayload();
                 int functionCode = jsonObject.optInt("functionCode");
 
-                if (functionCode == 6 || functionCode == 16) {
-                    output(0, message);
-                } else if (functionCode == 3 || functionCode == 4) {
-                    output(1, message);
+                switch (functionCode) {
+                    case 3:
+                    case 4:
+                        output(1, message);
+                        break;
+                    case 6:
+                    case 16:
+                        output(0, message);
+                        break;
+                    default:
                 }
             } catch (InterruptedException e) {
                 log.error("select error: {}", e.getMessage());

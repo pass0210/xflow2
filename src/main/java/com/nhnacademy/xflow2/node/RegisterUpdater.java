@@ -9,11 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class RegisterUpdater extends InputNode<JSONMessage> {
-    Register register;
 
-    public RegisterUpdater(int inputCount, Register register) {
+    public RegisterUpdater(int inputCount) {
         super(inputCount);
-        this.register = register;
     }
 
     @Override
@@ -29,10 +27,10 @@ public class RegisterUpdater extends InputNode<JSONMessage> {
                 int ratio = object.optInt("ratio");
 
                 if (registerInfo.equals("holding")) {
-                    int[] holdingRegisters = register.getHoldingRegisters();
+                    int[] holdingRegisters = Register.INSTANCE.getHoldingRegisters();
                     holdingRegisters[address] = (int) (value * ratio);
                 } else if (registerInfo.equals("input")) {
-                    int[] holdingRegisters = register.getInputRegisters();
+                    int[] holdingRegisters = Register.INSTANCE.getInputRegisters();
                     holdingRegisters[address] = (int) (value * ratio);
                 }
 

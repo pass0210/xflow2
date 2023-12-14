@@ -2,7 +2,6 @@ package com.nhnacademy.xflow2.node;
 
 import lombok.extern.slf4j.Slf4j;
 import java.net.Socket;
-import java.util.Arrays;
 import org.json.JSONObject;
 import com.nhnacademy.xflow2.message.ByteWithSocketMessage;
 import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
@@ -22,8 +21,7 @@ public class ByteParser extends InputOutputNode<ByteWithSocketMessage, JSONWithS
                 Socket socket = message.getSocket();
                 byte[] data = message.getPayload();
                 JSONObject jsonObject = parseData(data);
-                JSONWithSocketMessage jsonWithSocketMessage =
-                        new JSONWithSocketMessage(socket, jsonObject);
+                JSONWithSocketMessage jsonWithSocketMessage = new JSONWithSocketMessage(socket, jsonObject);
 
                 output(0, jsonWithSocketMessage); // 변환된 데이터를 Output으로 전달
             } catch (InterruptedException e) {

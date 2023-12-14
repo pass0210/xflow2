@@ -11,7 +11,10 @@ import java.util.Arrays;
 
 @Slf4j
 public class ModbusIn extends OutputNode<ByteWithSocketMessage> {
+    private static final int MINIMUM_PACKET_LENGTH = 12;
+
     private final ServerSocket serverSocket;
+
     public ModbusIn(int outputCount, ServerSocket serverSocket) {
         super(outputCount);
         this.serverSocket = serverSocket;
@@ -19,7 +22,7 @@ public class ModbusIn extends OutputNode<ByteWithSocketMessage> {
 
     @Override
     public void run() {
-        while(!Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
             try {
                 Socket socket = serverSocket.accept();
 
@@ -30,7 +33,7 @@ public class ModbusIn extends OutputNode<ByteWithSocketMessage> {
                         byte[] buffer = new byte[1024];
                         int receivedLength = reader.read(buffer);
 
-                        if (receivedLength != 0) {
+                        if (receivedLength >= MINIMUM_PACKET_LENGTH) {
                             byte[] receivedBytes = Arrays.copyOfRange(buffer, 0, receivedLength);
                             ByteWithSocketMessage message = new ByteWithSocketMessage(socket, receivedBytes);
 

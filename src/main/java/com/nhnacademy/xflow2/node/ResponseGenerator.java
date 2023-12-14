@@ -89,9 +89,8 @@ public class ResponseGenerator extends InputOutputNode<JSONWithSocketMessage, By
                 break;
         }
 
-        JSONArray dataArray = info.getJSONArray("data");
-        for (int index = 0; index < dataArray.length(); index++) {
-            int data = dataArray.optInt(index);
+        int[] dataArray = (int[]) info.get("data");
+        for (int data : dataArray) {
             pdu.add((byte) ((data >> 8) & 0xff));
             pdu.add((byte) (data & 0xff));
         }

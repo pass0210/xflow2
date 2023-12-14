@@ -35,6 +35,7 @@ public class RuleEngine extends InputOutputNode<JSONMessage, JSONMessage> {
                 // TODO : output 1 추가
             } catch (InterruptedException e) {
                 log.error("message 가져오기 실패: {}", e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
     }

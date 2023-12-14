@@ -1,7 +1,5 @@
 package com.nhnacademy.xflow2;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +10,6 @@ import java.util.List;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.Test;
 
 import com.nhnacademy.xflow2.checker.Checker;
 import com.nhnacademy.xflow2.checker.JSONKeyStrategy;

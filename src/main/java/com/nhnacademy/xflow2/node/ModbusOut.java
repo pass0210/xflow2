@@ -1,6 +1,5 @@
 package com.nhnacademy.xflow2.node;
 
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import com.nhnacademy.xflow2.message.ByteWithSocketMessage;

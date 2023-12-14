@@ -42,8 +42,11 @@ public class ModbusClient extends OutputNode<JSONWithSocketMessage> {
                 sendRequest();
                 responseProcessing();
                 Thread.sleep(TIME);
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
                 log.error(e.getMessage());
+            } catch (InterruptedException e) {
+                log.error(e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
     }

@@ -14,7 +14,6 @@ import com.nhnacademy.xflow2.node.ModbusClient;
 import com.nhnacademy.xflow2.node.ModbusMapper;
 import com.nhnacademy.xflow2.node.RegisterUpdater;
 import com.nhnacademy.xflow2.node.RuleEngine;
-import com.nhnacademy.xflow2.register.Register;
 
 public class ModbusTest {
     public static void main(String[] args) {

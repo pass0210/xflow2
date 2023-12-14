@@ -8,7 +8,7 @@ import com.nhnacademy.xflow2.register.Register;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class RegisterWriter extends InputOutputNode<JSONWithSocketMessage, JSONWithSocketMessage>{
+public class RegisterWriter extends InputOutputNode<JSONWithSocketMessage, JSONWithSocketMessage> {
     private int[] register = Register.INSTANCE.getHoldingRegisters();
 
     public RegisterWriter(int inputCount, int outputCount) {
@@ -24,8 +24,8 @@ public class RegisterWriter extends InputOutputNode<JSONWithSocketMessage, JSONW
 
                 int startAddress = o.getInt("startAddress");
                 int dataCount = o.getInt("dataCount");
-                int[] data = ((int[])o.get("data"));
-                
+                int[] data = ((int[]) o.get("data"));
+
                 if (o.getInt("functionCode") == 6) {
                     singleWrite(startAddress, data[0]);
                 } else {
@@ -36,17 +36,18 @@ public class RegisterWriter extends InputOutputNode<JSONWithSocketMessage, JSONW
                 output(0, new JSONWithSocketMessage(msg.getSocket(), o));
             } catch (InterruptedException e) {
                 log.error(e.getMessage());
+                Thread.currentThread().interrupt();
             }
         }
     }
 
-    private void singleWrite(int startAddress, int data){
+    private void singleWrite(int startAddress, int data) {
         register[startAddress] = data;
     }
-    
-    private void multiWrite(int startAddress, int dataCount, int[] data){
-        for (int i=0; i<dataCount; i++){
-            register[startAddress+i] = data[i];
+
+    private void multiWrite(int startAddress, int dataCount, int[] data) {
+        for (int i = 0; i < dataCount; i++) {
+            register[startAddress + i] = data[i];
         }
     }
 }

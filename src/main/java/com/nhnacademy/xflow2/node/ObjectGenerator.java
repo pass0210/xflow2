@@ -10,6 +10,10 @@ import com.nhnacademy.xflow2.splitter.TypeSplitter;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * 객체를 생성하는 클래스입니다.
+ * 입력된 데이터를 기반으로 새로운 객체를 생성합니다.
+ */
 @Slf4j
 public class ObjectGenerator extends InputOutputNode<JSONMessage, JSONMessage> {
     private final TypeSplitter typeSplitter;

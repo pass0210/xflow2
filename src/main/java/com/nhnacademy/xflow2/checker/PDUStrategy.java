@@ -4,6 +4,10 @@ import org.json.JSONObject;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * MBAP(Modbus Application Protocol)에 대한 조건을 확인하는 전략 클래스입니다.
+ * MBAP 프레임의 구조를 검증합니다.
+ */
 @Slf4j
 public class PDUStrategy implements CheckStrategy<JSONObject> {
     private static final int MAX_REGISTER = 10000;

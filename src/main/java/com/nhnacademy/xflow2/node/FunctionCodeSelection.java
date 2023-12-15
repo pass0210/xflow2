@@ -6,6 +6,10 @@ import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Modbus 프로토콜의 Function Code를 선택하는 클래스입니다.
+ * 주어진 데이터에서 Function Code를 추출하거나 설정합니다.
+ */
 @Slf4j
 public class FunctionCodeSelection extends InputOutputNode<JSONWithSocketMessage, JSONWithSocketMessage> {
 

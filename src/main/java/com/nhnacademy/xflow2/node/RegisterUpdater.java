@@ -7,6 +7,10 @@ import com.nhnacademy.xflow2.register.Register;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Modbus 레지스터를 업데이트하는 클래스입니다.
+ * 주어진 주소에 새로운 값을 설정하여 레지스터를 업데이트합니다.
+ */
 @Slf4j
 public class RegisterUpdater extends InputNode<JSONMessage> {
 

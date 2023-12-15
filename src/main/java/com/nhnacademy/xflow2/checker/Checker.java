@@ -2,6 +2,10 @@ package com.nhnacademy.xflow2.checker;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * JSON 데이터의 특정 조건을 확인하는 역할을 하는 클래스입니다.
+ * 다양한 전략(Strategy)를 사용하여 조건을 확인하며, 입력 데이터를 검증합니다.
+ */
 @Slf4j
 public class Checker<T> {
    

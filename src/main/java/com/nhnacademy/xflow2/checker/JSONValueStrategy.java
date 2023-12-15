@@ -4,6 +4,10 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+/**
+ * MBAP(Modbus Application Protocol)에 대한 조건을 확인하는 전략 클래스입니다.
+ * MBAP 프레임의 구조를 검증합니다.
+ */
 public class JSONValueStrategy implements CheckStrategy<JSONObject> {
 
     private final String targetKey;

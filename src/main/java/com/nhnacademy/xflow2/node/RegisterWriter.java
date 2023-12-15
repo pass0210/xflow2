@@ -9,6 +9,10 @@ import com.nhnacademy.xflow2.register.Register;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Modbus 레지스터에 값을 쓰는 클래스입니다.
+ * 주어진 주소에 값을 쓰고 레지스터를 업데이트합니다.
+ */
 @Slf4j
 public class RegisterWriter extends InputOutputNode<JSONWithSocketMessage, JSONWithSocketMessage> {
     private int[] register = Register.INSTANCE.getHoldingRegisters();

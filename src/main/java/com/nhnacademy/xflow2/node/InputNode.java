@@ -2,6 +2,10 @@ package com.nhnacademy.xflow2.node;
 
 import com.nhnacademy.xflow2.port.Port;
 
+/**
+ * 입력을 처리하는 추상 노드 클래스입니다.
+ * {@code Port}를 통해 입력을 받아 처리하며, 별도의 스레드에서 실행됩니다.
+ */
 public abstract class InputNode<T> extends Node implements Runnable {
     private final Thread thread;
     private final Port<T>[] inputPorts;

@@ -9,6 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 
+/**
+ * Modbus 프로토콜을 사용하여 데이터를 입력받는 서버 클래스입니다.
+ * Modbus TCP 서버로 동작하며, 클라이언트로부터 데이터를 수신합니다.
+ */
 @Slf4j
 public class ModbusIn extends OutputNode<ByteWithSocketMessage> {
     private static final int MINIMUM_PACKET_LENGTH = 12;

@@ -1,5 +1,9 @@
 package com.nhnacademy.xflow2.register;
 
+/**
+ * 레지스터 데이터를 관리하는 싱글톤 열거형 클래스로, Holding Registers와 Input Registers를 제공합니다.
+ * 레지스터에 대한 데이터를 읽고 쓰기 위해 사용됩니다.
+ */
 public enum Register {
     INSTANCE;
 

@@ -54,9 +54,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Xflow {
     private static JSONObject setting;
-    
-    private static final String SETTING_FILE_PATH = "src/main/java/com/nhnacademy/xflow2/setting.json";
-    private static final String PROPERTIES_PATH = "src/main/java/com/nhnacademy/mqtt/properties.json";
+
+    private static final String SETTING_FILE_PATH = "./src/main/java/com/nhnacademy/xflow2/setting.json";
+    private static final String PROPERTIES_PATH = "./src/main/java/com/nhnacademy/xflow2/properties.json";
     private static final String PARAMETERS = "parameters";
     private static final String CHECKER = "Checker";
     private static final String KEY_FILTER = "KeyFilter";
@@ -76,8 +76,8 @@ public class Xflow {
     private static final String MODBUS_MAPPER = "modbusMapper";
     private static final String MODBUS_IN = "modbusIn";
     private static final String SENSORTYPE_FILTER = "SensorTypeFilter";
-    
-    public static void main( String[] args ) {
+
+    public static void main(String[] args) {
         try {
             setting = jsonFileReader(PROPERTIES_PATH);
             setCommendLineArgument(args);
@@ -88,9 +88,9 @@ public class Xflow {
             log.error("I/O error: {}", e.getMessage());
         }
     }
-    
+
     // JSON 파일 읽기
-    public static JSONObject jsonFileReader(String filePath){
+    public static JSONObject jsonFileReader(String filePath) {
         JSONObject jsonObject = new JSONObject();
         try {
             JSONParser parser = new JSONParser();
@@ -109,16 +109,15 @@ public class Xflow {
         return jsonObject;
     }
 
-    
     // commendLine Argument 설정
-    private static void setCommendLineArgument(String[] args) throws ParseException{
+    private static void setCommendLineArgument(String[] args) throws ParseException {
         Options options = new Options();
         options.addOption("an", "an", true, "filter app name");
         options.addOption("s", true, "filter sensor type");
         options.addOption("c", false, "use json.setting");
-    
+
         CommandLineParser cmdParser = new DefaultParser();
-        
+
         try {
             CommandLine cmd = cmdParser.parse(options, args);
             hasOption(cmd);
@@ -127,7 +126,7 @@ public class Xflow {
         }
     }
 
-    private static void hasOption(CommandLine cmd){
+    private static void hasOption(CommandLine cmd) {
         if (cmd.hasOption("c")) {
             JSONObject settingJson = jsonFileReader(SETTING_FILE_PATH);
             setting(settingJson);
@@ -145,7 +144,7 @@ public class Xflow {
         }
     }
 
-    private static void setting(JSONObject settingJson){
+    private static void setting(JSONObject settingJson) {
         JSONArray keyFilterKeyList = settingJson.getJSONObject(KEY_FILTER)
                 .getJSONObject(PARAMETERS)
                 .getJSONObject(CHECKER)
@@ -154,7 +153,7 @@ public class Xflow {
                 .getJSONObject(PARAMETERS)
                 .getJSONObject(CHECKER)
                 .getJSONObject(PARAMETERS).getJSONArray(SUB_KEY_LIST);
-                
+
         JSONArray appNameFilterValueList = settingJson.getJSONObject(APP_NAME_FILTER)
                 .getJSONObject(PARAMETERS)
                 .getJSONObject(CHECKER)
@@ -165,7 +164,7 @@ public class Xflow {
                 .getJSONObject(CHECKER)
                 .getJSONObject(PARAMETERS)
                 .getJSONArray(SUB_KEY_LIST);
-                
+
         JSONArray sensorTypeFilterValueList = settingJson.getJSONObject(SENSOR_TYPE_FILTER)
                 .getJSONObject(PARAMETERS)
                 .getJSONObject(CHECKER)
@@ -176,7 +175,7 @@ public class Xflow {
                 .getJSONObject(CHECKER)
                 .getJSONObject(PARAMETERS)
                 .getJSONArray(SUB_KEY_LIST);
-                
+
         String mqttInServerURI = settingJson.getJSONObject("mqttIn")
                 .getJSONObject(PARAMETERS)
                 .getString(SERVER_URI);
@@ -214,7 +213,7 @@ public class Xflow {
         setting.getJSONObject(SENSOR_TYPE_FILTER).put(VALUE_LIST, sensorTypeFilterValueList);
         setting.getJSONObject(SENSOR_TYPE_FILTER).put(TARGET_KEY, sensorTypeFilterTargetKey);
         setting.getJSONObject(SENSOR_TYPE_FILTER).put(SUB_KEY_LIST, sensorTypeFilterSubKeyList);
-        
+
         setting.getJSONObject("MqttPublisher").put(SERVER_URI, mqttOutServerURI);
         setting.getJSONObject(RULE_ENGINE).put(DATA_BASE, ruleEngineDatabase);
         setting.getJSONObject(MODBUS_CLIENT).put("serverAddress", modbusClientServerAddress);
@@ -223,44 +222,50 @@ public class Xflow {
         setting.getJSONObject(MODBUS_IN).put("port", modbusInPort);
     }
 
-    
     // 노드 생성/연결/실행
-    private static void run() throws JSONException, IOException{
-        MqttSubscriber mqttSubscriber = new MqttSubscriber(1, 
-            MqttClientManager.getClient(setting.optString(SERVER_URI)), setting.getJSONObject(MQTT_SUBSCRIBER).optString("topicFilter"));
+    private static void run() throws JSONException, IOException {
+        MqttSubscriber mqttSubscriber = new MqttSubscriber(1,
+                MqttClientManager.getClient(setting.getJSONObject(MQTT_SUBSCRIBER).optString(SERVER_URI)),
+                setting.getJSONObject(MQTT_SUBSCRIBER).optString("topicFilter"));
 
-        JSONKeyStrategy jsonKeyStrategy = new JSONKeyStrategy((getValueList(setting.getJSONObject(KEY_FILTER).getJSONArray(KEY_LIST))), 
-                                                (getValueList(setting.getJSONObject(KEY_FILTER).getJSONArray(SUB_KEY_LIST))));
+        JSONKeyStrategy jsonKeyStrategy = new JSONKeyStrategy(
+                (getValueList(setting.getJSONObject(KEY_FILTER).getJSONArray(KEY_LIST))),
+                (getValueList(setting.getJSONObject(KEY_FILTER).getJSONArray(SUB_KEY_LIST))));
         Checker<JSONObject> keyFilterChecker = new Checker<>(jsonKeyStrategy);
         Filter<JSONMessage> keyFilter = new Filter<>(1, 1, keyFilterChecker);
 
-
-        JSONValueStrategy jsonValueStrategy = new JSONValueStrategy(setting.getJSONObject(APP_NAME_FILTER).optString(TARGET_KEY), 
-                            getValueList(setting.getJSONObject(APP_NAME_FILTER).getJSONArray(VALUE_LIST)), 
-                            getValueList(setting.getJSONObject(APP_NAME_FILTER).getJSONArray(SUB_KEY_LIST)));
+        JSONValueStrategy jsonValueStrategy = new JSONValueStrategy(
+                setting.getJSONObject(APP_NAME_FILTER).optString(TARGET_KEY),
+                getValueList(setting.getJSONObject(APP_NAME_FILTER).getJSONArray(VALUE_LIST)),
+                getValueList(setting.getJSONObject(APP_NAME_FILTER).getJSONArray(SUB_KEY_LIST)));
         Checker<JSONObject> appNameChecker = new Checker<>(jsonValueStrategy);
         Filter<JSONMessage> appNameFilter = new Filter<>(1, 1, appNameChecker);
 
         ObjectGenerator objectGenerator = new ObjectGenerator(1, 1);
 
-        jsonValueStrategy = new JSONValueStrategy(setting.getJSONObject(SENSORTYPE_FILTER).optString(TARGET_KEY), 
-                            getValueList(setting.getJSONObject(SENSORTYPE_FILTER).getJSONArray(VALUE_LIST)), 
-                            getValueList(setting.getJSONObject(SENSORTYPE_FILTER).getJSONArray(SUB_KEY_LIST)));
+        jsonValueStrategy = new JSONValueStrategy(setting.getJSONObject(SENSORTYPE_FILTER).optString(TARGET_KEY),
+                getValueList(setting.getJSONObject(SENSORTYPE_FILTER).getJSONArray(VALUE_LIST)),
+                getValueList(setting.getJSONObject(SENSORTYPE_FILTER).getJSONArray(SUB_KEY_LIST)));
         Checker<JSONObject> sensorTypeFilterChecker = new Checker<>(jsonValueStrategy);
         Filter<JSONMessage> sensorTypeFilter = new Filter<>(1, 1, sensorTypeFilterChecker);
 
-        RuleEngine ruleEngine = new RuleEngine(1, 1, setting.getJSONObject(RULE_ENGINE).getJSONObject(DATA_BASE));
+        RuleEngine ruleEngine = new RuleEngine(1, 2,
+                jsonFileReader(setting.getJSONObject(RULE_ENGINE).getString(DATA_BASE)));
 
         MqttMessageGenerator mqttMessageGenerator = new MqttMessageGenerator(1, 1);
 
-        MqttPublisher mqttPublisher = new MqttPublisher(1, MqttClientManager.getClient(setting.getJSONObject("MqttPublisher").optString(SERVER_URI)));
+        MqttPublisher mqttPublisher = new MqttPublisher(1,
+                MqttClientManager.getClient(setting.getJSONObject("MqttPublisher").optString(SERVER_URI)));
 
-        ModbusClient modbusClient = new ModbusClient(1, ModbusClientManager.getSocket(setting.getJSONObject(MODBUS_CLIENT).optString("serverAddress"), setting.optInt("port")));
+        ModbusClient modbusClient = new ModbusClient(1, ModbusClientManager
+                .getSocket(setting.getJSONObject(MODBUS_CLIENT).optString("serverAddress"),
+                        setting.getJSONObject(MODBUS_CLIENT).optInt("port")));
 
-        ModbusMapper modbusMapper = new ModbusMapper(1, 1, setting.getJSONObject(MODBUS_MAPPER).getJSONObject(KEY_MAPPING_TABLE));
+        ModbusMapper modbusMapper = new ModbusMapper(1, 1,
+                jsonFileReader(setting.getJSONObject(MODBUS_MAPPER).getString(KEY_MAPPING_TABLE)));
 
         RegisterUpdater registerUpdater = new RegisterUpdater(1);
-        
+
         ModbusIn modbusIn = new ModbusIn(1, new ServerSocket(setting.getJSONObject(MODBUS_IN).optInt("port")));
 
         ByteParser byteParser = new ByteParser(1, 1);
@@ -324,7 +329,6 @@ public class Xflow {
         responseGenerator.start();
         modbusOut.start();
     }
-
 
     private static List<String> getValueList(JSONArray jsonArray) {
         List<String> resultList = new ArrayList<>();

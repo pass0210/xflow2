@@ -1,6 +1,7 @@
 {
     "MqttSubscriber": {
-        "serverURI": "tcp://ems.nhnacademy.com"
+        "serverURI": "tcp://ems.nhnacademy.com",
+        "topicFilter": "application/#"
     },
     "KeyFilter": {
         "keyList": ["deviceInfo"],
@@ -13,7 +14,7 @@
     },
     "SensorTypeFilter": {
         "valueList": ["temperature", "humidity", "illumination"],
-        "targetKey": "topic",
+        "targetKey": "sensorId",
         "subKeyList": []
     },
     "MqttPublisher": {

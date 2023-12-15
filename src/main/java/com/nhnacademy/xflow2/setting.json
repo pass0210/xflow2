@@ -3,7 +3,8 @@
         "type": "MqttSubscriber",
         "parameters": {
             "outputCount": 1,
-            "serverURI": "tcp://ems.nhnacademy.com"
+            "serverURI": "tcp://ems.nhnacademy.com",
+            "topicFilter": "application/#"
         }
     },
     "KeyFilter": {

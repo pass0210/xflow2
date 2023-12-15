@@ -15,7 +15,7 @@ import com.nhnacademy.xflow2.node.ModbusMapper;
 import com.nhnacademy.xflow2.node.RegisterUpdater;
 import com.nhnacademy.xflow2.node.RuleEngine;
 
-public class ModbusTest {
+public class ModbusUpdateTest {
     public static void main(String[] args) {
         try {
             ModbusClient modbusClient = new ModbusClient(1, ModbusClientManager.getSocket("localhost", 502));

@@ -75,11 +75,15 @@ public class ResponseGenerator extends InputOutputNode<JSONWithSocketMessage, By
         switch (functionCode) {
             case 3:
             case 4:
+                pdu.add((byte) (functionCode & 0xFF));
+
                 int dataByteLength = info.optInt("dataByteLength");
                 pdu.add((byte) (dataByteLength & 0xff));
                 break;
             case 6:
             case 16:
+                pdu.add((byte) (functionCode & 0xFF));
+
                 int startAddress = info.optInt("startAddress");
                 pdu.add((byte) ((startAddress >> 8) & 0xFF));
                 pdu.add((byte) (startAddress & 0xFF));

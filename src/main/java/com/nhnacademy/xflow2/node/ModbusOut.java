@@ -2,13 +2,15 @@ package com.nhnacademy.xflow2.node;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
+
 import com.nhnacademy.xflow2.message.ByteWithSocketMessage;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ModbusOut extends InputNode<ByteWithSocketMessage> {
 
-    protected ModbusOut(int inputCount) throws IOException {
+    public ModbusOut(int inputCount) throws IOException {
         super(inputCount);
 
     }
@@ -20,6 +22,9 @@ public class ModbusOut extends InputNode<ByteWithSocketMessage> {
                 ByteWithSocketMessage message = tryGetMessage();
                 byte[] byteArray = message.getPayload();
                 Socket socket = message.getSocket();
+
+                log.debug("modbus out byte: {}", Arrays.toString(byteArray));
+
                 socket.getOutputStream().write(byteArray);
                 socket.getOutputStream().flush();
                 socket.close();

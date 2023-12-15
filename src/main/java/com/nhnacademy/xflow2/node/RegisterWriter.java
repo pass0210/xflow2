@@ -1,5 +1,7 @@
 package com.nhnacademy.xflow2.node;
 
+import java.util.Arrays;
+
 import org.json.JSONObject;
 
 import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
@@ -23,15 +25,19 @@ public class RegisterWriter extends InputOutputNode<JSONWithSocketMessage, JSONW
                 JSONObject o = msg.getPayload();
 
                 int startAddress = o.getInt("startAddress");
-                int dataCount = o.getInt("dataCount");
                 int[] data = ((int[]) o.get("data"));
 
                 if (o.getInt("functionCode") == 6) {
                     singleWrite(startAddress, data[0]);
                 } else {
+                    int dataCount = o.getInt("dataCount");
                     multiWrite(startAddress, dataCount, data);
-                    o.put("data", dataCount);
+                    int[] intArray = new int[] { dataCount };
+                    o.put("data", intArray);
                 }
+
+                log.debug("registers: {}",
+                        Arrays.copyOfRange(Register.INSTANCE.getHoldingRegisters(), 100, 105));
 
                 output(0, new JSONWithSocketMessage(msg.getSocket(), o));
             } catch (InterruptedException e) {

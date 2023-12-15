@@ -30,17 +30,13 @@ public class ModbusMapper extends InputOutputNode<JSONWithSocketMessage, JSONMes
                 String mappingKey = host + "-" + port;
 
                 String address = receiveJson.optString("address");
-                double value = receiveJson.getDouble("value");
-
-                log.debug("{}", mappingTable);
+                double value = receiveJson.optDouble("value");
 
                 JSONObject mappingData = mappingTable.getJSONObject(mappingKey).getJSONObject(address);
                 JSONObject sendJsonObject = new JSONObject(mappingData.toString());
 
-                log.debug("mappingData: {}", mappingData);
-                log.debug("sendJsonObject: {}", sendJsonObject);
-
                 sendJsonObject.put("value", value);
+                log.debug("{}", sendJsonObject);
                 JSONMessage sendMessage = new JSONMessage(sendJsonObject);
 
                 output(0, sendMessage);

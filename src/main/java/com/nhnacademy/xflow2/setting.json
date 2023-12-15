@@ -1,0 +1,166 @@
+{
+    "mqttIn": {
+        "type": "MqttSubscriber",
+        "parameters": {
+            "outputCount": 1,
+            "serverURI": "tcp://ems.nhnacademy.com"
+        }
+    },
+    "KeyFilter": {
+        "type": "Filter",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1,
+            "Checker": {
+                "type": "KeyChecker",
+                "parameters": {
+                    "keyList": ["deviceInfo"],
+                    "subKeyList": []
+                }
+            }
+        }
+    },
+    "AppNameFilter": {
+        "type": "Filter",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1,
+            "Checker": {
+                "type": "ValueChecker",
+                "parameters": {
+                    "valueList": ["NHNAcademyEMS"],
+                    "targetKey": "applicationName",
+                    "subKeyList": ["deviceInfo"]
+                }
+            }
+        }
+    },
+    "ObjectGenerator": {
+        "type": "ObjectGenerator",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "SensorTypeFilter": {
+        "type": "Filter",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1,
+            "Checker": {
+                "type": "ValueChecker",
+                "parameters": {
+                    "valueList": ["temperature"],
+                    "targetKey": "sensorId",
+                    "subKeyList": []
+                }
+            }
+        }
+    },
+    "RuleEngine": {
+        "type": "RuleEngine",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 2,
+            "database": "./src/main/java/com/nhnacademy/xflow2/database.json"
+        }
+    },
+    "mqttMessageGenerator": {
+        "type": "MqttMessageGenerator",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "mqttOut": {
+        "type": "MqttPublisher",
+        "parameters": {
+            "inputCount": 1,
+            "serverURI": "tcp://localhost"
+        }
+    },
+    "modbusClient": {
+        "type": "ModbusClient",
+        "parameters": {
+            "outputCount": 1,
+            "serverAddress": "localhost",
+            "port": 502
+        }
+    },
+    "modbusMapper": {
+        "type": "ModbusMapper",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1,
+            "key-mapping-table": "./src/main/java/com/nhnacademy/xflow2/key-mapping-table.json"
+        }
+    },
+    "RegisterUpdater": {
+        "type": "RegisterUpdater",
+        "parameters": {
+            "inputCount": 1
+        }
+    },
+    "modbusIn": {
+        "type": "ModbusIn",
+        "parameters": {
+            "outputCount": 1,
+            "port": 13245
+        }
+    },
+    "ByteParser": {
+        "type": "ByteParser",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "mbapFilter": {
+        "type": "Filter",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "pduFilter": {
+        "type": "Filter",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "FunctionCodeSelection": {
+        "type": "FunctionCodeSelection",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 2
+        }
+    },
+    "RegisterWriter": {
+        "type": "RegisterWriter",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "RegisterReader": {
+        "type": "RegisterReader",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "ResponseGenerator": {
+        "type": "ResponseGenerator",
+        "parameters": {
+            "inputCount": 1,
+            "outputCount": 1
+        }
+    },
+    "modbusOut": {
+        "type": "ModbusOut",
+        "parameters": {
+            "inputCount": 1
+        }
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "MqttSubscriber": {
+        "serverURI": "tcp://ems.nhnacademy.com"
+    },
+    "KeyFilter": {
+        "keyList": ["deviceInfo"],
+        "subKeyList": []
+    },
+    "AppNameFilter": {
+        "valueList": ["NHNAcademyEMS"],
+        "targetKey": "applicationName",
+        "subKeyList": ["deviceInfo"]
+    },
+    "SensorTypeFilter": {
+        "valueList": ["temperature", "humidity", "illumination"],
+        "targetKey": "topic",
+        "subKeyList": []
+    },
+    "MqttPublisher": {
+        "serverURI": "tcp://localhost"
+    },
+    "RuleEngine": {
+        "database": "./src/main/java/com/nhnacademy/xflow2/database.json"
+    },
+    "modbusClient": {
+        "serverAddress": "localhost",
+        "port": 502
+    },
+    "modbusMapper": {
+        "key-mapping-table": "./src/main/java/com/nhnacademy/xflow2/key-mapping-table.json"
+    },
+    "modbusIn": {
+        "port": 13245
+    }
+}

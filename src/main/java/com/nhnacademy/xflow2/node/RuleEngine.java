@@ -31,7 +31,7 @@ public class RuleEngine extends InputOutputNode<JSONMessage, JSONMessage> {
                     JSONMessage sendMessage = new JSONMessage(sendObject);
 
                     output(0, sendMessage);
-                    output(0, sendMessage);
+                    output(1, sendMessage);
                 }
                 // TODO : output 1 추가
             } catch (InterruptedException e) {

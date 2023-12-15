@@ -6,6 +6,10 @@ import org.json.JSONObject;
 import com.nhnacademy.xflow2.message.ByteWithSocketMessage;
 import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
 
+/**
+ * 입력된 데이터를 바이트로 파싱하는 클래스입니다.
+ * JSON 데이터를 송수신하기 위해 바이트 형태로 변환합니다.
+ */
 @Slf4j
 public class ByteParser extends InputOutputNode<ByteWithSocketMessage, JSONWithSocketMessage> {
 

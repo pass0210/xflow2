@@ -7,6 +7,10 @@ import com.nhnacademy.xflow2.message.JSONMessage;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * MQTT 메시지를 생성하는 클래스입니다.
+ * 입력된 데이터를 기반으로 MQTT 메시지를 생성합니다.
+ */
 @Slf4j
 public class MqttMessageGenerator extends InputOutputNode<JSONMessage, JSONMessage> {
     CommonsTopicGenerator topicGenerator;

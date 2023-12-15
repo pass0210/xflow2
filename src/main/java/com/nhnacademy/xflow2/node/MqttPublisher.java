@@ -8,6 +8,10 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONObject;
 
+/**
+ * MQTT 프로토콜을 사용하여 데이터를 발행하는 클래스입니다.
+ * 지정된 MQTT 브로커에 데이터를 발행합니다.
+ */
 @Slf4j
 public class MqttPublisher extends InputNode<JSONMessage> {
     private final MqttClient client;

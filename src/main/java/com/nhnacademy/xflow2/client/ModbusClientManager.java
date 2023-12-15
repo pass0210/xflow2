@@ -5,6 +5,10 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Modbus 클라이언트 소켓을 관리하는 유틸리티 클래스입니다.
+ * 서버 주소와 포트를 기반으로 소켓을 생성 및 관리하며, 중복 생성을 방지합니다.
+ */
 public class ModbusClientManager {
     private static Map<String, Socket> socketMap = new HashMap<>();
 

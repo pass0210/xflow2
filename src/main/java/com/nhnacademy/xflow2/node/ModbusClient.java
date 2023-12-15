@@ -12,6 +12,10 @@ import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Modbus 프로토콜을 사용하여 데이터를 송수신하는 클라이언트 클래스입니다.
+ * Modbus TCP 클라이언트로 동작하며, 지정된 서버에 연결합니다.
+ */
 @Slf4j
 public class ModbusClient extends OutputNode<JSONWithSocketMessage> {
     static final int TIME = 1000;

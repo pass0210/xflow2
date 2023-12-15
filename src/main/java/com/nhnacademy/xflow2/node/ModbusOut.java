@@ -7,6 +7,10 @@ import java.util.Arrays;
 import com.nhnacademy.xflow2.message.ByteWithSocketMessage;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Modbus 프로토콜을 사용하여 데이터를 송신하는 클래스입니다.
+ * Modbus TCP 서버로 데이터를 송신합니다.
+ */
 @Slf4j
 public class ModbusOut extends InputNode<ByteWithSocketMessage> {
 

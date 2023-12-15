@@ -8,6 +8,10 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONObject;
 
+/**
+ * MQTT 프로토콜을 사용하여 데이터를 구독하는 클래스입니다.
+ * 지정된 MQTT 브로커에서 데이터를 구독하고 수신된 데이터를 처리합니다.
+ */
 @Slf4j
 public class MqttSubscriber extends OutputNode<JSONMessage> {
     private String topicFilter;

@@ -11,6 +11,10 @@ import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 응답을 생성하는 클래스입니다.
+ * 주어진 데이터를 기반으로 새로운 응답을 생성합니다.
+ */
 @Slf4j
 public class ResponseGenerator extends InputOutputNode<JSONWithSocketMessage, ByteWithSocketMessage> {
 

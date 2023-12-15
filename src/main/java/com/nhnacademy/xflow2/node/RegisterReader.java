@@ -9,6 +9,10 @@ import com.nhnacademy.xflow2.register.Register;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Modbus 레지스터를 읽는 클래스입니다.
+* 주어진 주소에서 레지스터 값을 읽어옵니다.
+*/
 @Slf4j
 public class RegisterReader extends InputOutputNode<JSONWithSocketMessage, JSONWithSocketMessage> {
 

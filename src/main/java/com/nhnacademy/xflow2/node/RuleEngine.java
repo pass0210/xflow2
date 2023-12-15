@@ -4,6 +4,10 @@ import com.nhnacademy.xflow2.message.JSONMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 
+/**
+ * 규칙을 평가하고 처리하는 엔진 클래스입니다.
+ * 주어진 규칙에 따라 데이터를 처리하고 결과를 생성합니다.
+ */
 @Slf4j
 public class RuleEngine extends InputOutputNode<JSONMessage, JSONMessage> {
     private final JSONObject database;

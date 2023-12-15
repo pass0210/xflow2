@@ -9,6 +9,10 @@ import com.nhnacademy.xflow2.message.JSONWithSocketMessage;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Modbus 데이터와 JSON 데이터 간의 매핑을 수행하는 클래스입니다.
+ * Modbus 프로토콜로부터 수신된 데이터를 JSON 형식으로 변환하거나 그 반대로 수행합니다.
+ */
 @Slf4j
 public class ModbusMapper extends InputOutputNode<JSONWithSocketMessage, JSONMessage> {
     JSONObject mappingTable;

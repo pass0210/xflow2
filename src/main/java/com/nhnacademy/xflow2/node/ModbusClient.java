@@ -62,7 +62,6 @@ public class ModbusClient extends OutputNode<JSONWithSocketMessage> {
         int receivedLength = inputStream.read(inputBuffer, 0, inputBuffer.length);
         if (receivedLength > 0) {
             byte[] recievedMessage = Arrays.copyOfRange(inputBuffer, 0, receivedLength);
-            log.debug("{}", recievedMessage);
             JSONObject object = byteToJson(recievedMessage);
             output(0, new JSONWithSocketMessage(client, object));
         }

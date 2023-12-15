@@ -1,0 +1,44 @@
+{
+  "localhost-502" : {
+    "101": {
+      "sensorId": "24e124128c067999-temperature",
+      "value": null
+    },
+    "102": {
+      "sensorId": "24e124128c067999-humidity",
+      "value": null
+    },
+    "103": {
+      "sensorId": "24e124128c067999-pressure",
+      "value": null
+    },
+    "104": {
+      "sensorId": "24e124128c067999-illumination",
+      "value": null
+    },
+    "105": {
+      "sensorId": "24e124128c067999-co2",
+      "value": null
+    },
+    "201": {
+      "sensorId": "24e124743d012324-spl",
+      "value": null
+    },
+    "202": {
+      "sensorId": "24e124743d012324-leq",
+      "value": null
+    },
+    "203": {
+      "sensorId": "24e124743d012324-lmax",
+      "value": null
+    },
+    "301": {
+      "sensorId": "24e124785c389818-temperature",
+      "value": null
+    },
+    "302": {
+      "sensorId": "24e124785c389818-humidity",
+      "value": null
+    }
+  }
+}

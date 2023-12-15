@@ -36,13 +36,13 @@ public class ByteParser extends InputOutputNode<ByteWithSocketMessage, JSONWithS
         JSONObject result = new JSONObject();
 
         int transactionId = (byteData[0] & 0xFF) << 8 | (byteData[1] & 0xFF);
-        result.put("transcationId", transactionId);
+        result.put("transactionId", transactionId);
 
         int protocolId = (byteData[2] & 0xFF) << 8 | (byteData[3] & 0xFF);
         result.put("protocolId", protocolId);
 
-        int lengthId = (byteData[4] & 0xFF) << 8 | (byteData[5] & 0xFF);
-        result.put("lengthId", lengthId);
+        int length = (byteData[4] & 0xFF) << 8 | (byteData[5] & 0xFF);
+        result.put("length", length);
 
         int unitId = byteData[6] & 0xFF;
         result.put("unitId", unitId);
